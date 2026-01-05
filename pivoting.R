@@ -48,3 +48,17 @@ face_pivoted <- df_final %>%
   separate_rows(face_area, sep = ";") %>%
   mutate(face_area = trimws(face_area)) %>%
   filter(face_area != "")
+# 5. Visualization & Text Details
+speed_plot <- ggplot(df_final, aes(x = speed, fill = area)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Collision Speed Distribution by Region",
+    subtitle = "Analysis of RTA cases at LUH Hyderabad",
+    x = "Speed Parameter (km/hr)",
+    y = "Frequency of Accidents",
+    caption = "Confidential Clinical Data - Redacted for Research"
+  ) +
+  # Text Detail: Annotating the High-Risk group
+  annotate("text", x = 4, y = 5, label = "High-Speed Critical Zone", 
+           color = "red", fontface = "bold", angle = 90) +
+  theme_minimal()
